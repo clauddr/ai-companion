@@ -1,4 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 import prismadb from "@/lib/prismadb";
@@ -61,7 +61,7 @@ export async function GET() {
 
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
-    console.log("[STRIPE_GET]", error);
-    return new NextResponse("Internal error", { status: 500 });
+    console.log("[STRIPE]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

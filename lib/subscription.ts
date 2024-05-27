@@ -1,6 +1,6 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
-import prismadb from "./prismadb";
+import prismadb from "@/lib/prismadb";
 
 const DAY_IN_MS = 86_400_000;
 
@@ -16,10 +16,10 @@ export const checkSubscription = async () => {
       userId: userId,
     },
     select: {
+      stripeSubscriptionId: true,
       stripeCurrentPeriodEnd: true,
       stripeCustomerId: true,
       stripePriceId: true,
-      stripeSubscriptionId: true,
     },
   });
 
